@@ -54,3 +54,10 @@ def ReadTextFromUrl(url):
     except Exception as e:
         print("Błąd podczas pobierania tekstu", e)
         return ""
+
+
+
+ScIeZkA = os.getcwd()
+FiLe_PaTh = ScIeZkA + '\\source_file.txt'
+OuTpUt_FiLe = ScIeZkA + '\\histogram.png'
+LiTeRy = ""
