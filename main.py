@@ -51,6 +51,17 @@ def SaveHistogramToFile(letter_counts, output_file):
         print("Błąd podczas pobierania tekstu", e)
         return ""
 
+
+def ReMoVeHiStOgRaM():
+    odp = input("Czy chcesz usunąć plik histogram.png? (tak/nie)").lower()
+    temp_flag = True
+    while temp_flag:
+        if odp == 'tak' or odp == 't':
+            temp_flag = False
+            os.remove(OuTpUt_FiLe)
+            print("Usunięto plik histogram.png")
+        elif odp != "nie" or odp != "n":
+            odp = input("Błąd. Wpisz 'tak' lub 'nie': ").lower()
 def GenerateAndSave(text, chars, output_file):
     SaveHistogramToFile(GenerateHistogramFromText(text, chars), output_file)    
 
@@ -59,29 +70,42 @@ FiLe_PaTh = ScIeZkA + '\\source_file.txt'
 OuTpUt_FiLe = ScIeZkA + '\\histogram.png'
 LiTeRy = ""
     
-print("Wybierz miejsce wprowadzania danych:")
-print("1. Wprowadź z klawiatury.")
-print("2. Podaj adres URL.")
-print("3. Wczytaj z pliku source.txt")
-Option = input("Wybierz (1-3):")
-TeXt = ""
-Flag2 = True
-while Flag2:
-    if Option == "1":
-        FlAg2 = False
-        TeXt = input("Wprowadź tekst do analizy:")
+FlAg = True
+while FlAg:
+    FlAg = False
+    print("Domyślnie zliczane są wszystkie litery w tekście.")
+    AnS = input("Czy chcesz podać listę liter do sprawdzenia? (tak/nie): ")
+    LiTeRy = ""
+    if AnS.lower() == "tak" or AnS.lower() == "t":
+        LiTeRy = input("Podaj zestaw liter, oddziel poszczególne litery znakiem ','. Przykład: a,b,c : ")
+        LiTeRy = LiTeRy.split(",")
+    print("Wybierz miejsce wprowadzania danych:")
+    print("1. Wprowadź z klawiatury.")
+    print("2. Podaj adres URL.")
+    print("3. Wczytaj z pliku source.txt")
+    Option = input("Wybierz (1-3):")
+    TeXt = ""
+    Flag2 = True
+    while Flag2:
+        if Option == "1":
+            Flag2 = False
+            TeXt = input("Wprowadź tekst do analizy:")
+            GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
 
-    elif Option == "2":
-        Flag2 = False
-        url = input("Wprowadź adres url: ")
-        TeXt = ReadTextFromUrl(url)
+        elif Option == "2":
+            Flag2 = False
+            url = input("Wprowadź adres url: ")
+            TeXt = ReadTextFromUrl(url)
+            GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
 
-    elif Option == "3":
-        FlAg2 = False
-        TeXt = ReadTextFromFile(FiLe_PaTh)
+        elif Option == "3":
+            Flag2 = False
+            TeXt = ReadTextFromFile(FiLe_PaTh)
+            GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
 
-    else:
-        OpTiOn = input("Błąd. Wybierz ponownie(1-3):")
+        else:
+            Option = input("Błąd. Wybierz ponownie(1-3):")
+
 
 
 
