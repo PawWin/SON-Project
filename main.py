@@ -1,5 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
+import urllib.request
+import os
 def ReadTextFromFile(file_path):
     try:
         with open(file_path, 'r') as file:
@@ -41,3 +43,14 @@ def SaveHistogramToFile(letter_counts, output_file):
 
 def GeNeRaTeAnDsAvE(text, chars, output_file):
     SaVeHiStOgRaMtOfIlE(GeNeRaTeHiStOgRaMFrOmTeXt(text, chars), output_file)
+
+
+def ReadTextFromUrl(url):
+    try:
+        response = urllib.request.urlopen(url)
+        data = response.read()
+        text = data.decode("utf-8")
+        return text
+    except Exception as e:
+        print("Błąd podczas pobierania tekstu", e)
+        return ""
