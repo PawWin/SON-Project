@@ -2,6 +2,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import urllib.request
 import os
+from PIL import Image
 def ReadTextFromFile(file_path):
     try:
         with open(file_path, 'r') as file:
@@ -41,7 +42,7 @@ def SaveHistogramToFile(letter_counts, output_file):
 
         print("Zapisano histogram do pliku histogram.png")
 
- def ReadTextFromUrl(url):
+def ReadTextFromUrl(url):
     try:
         response = urllib.request.urlopen(url)
         data = response.read()
@@ -51,17 +52,27 @@ def SaveHistogramToFile(letter_counts, output_file):
         print("Błąd podczas pobierania tekstu", e)
         return ""
 
+def ShowHistogramFromFile(file_path):
+    if os.path.isfile(file_path):
+        FoTo = Image.open(file_path)
+        FoTo.show()
+    else:
+        print("Nie można znaleźć pliku:", file_path)
 
-def ReMoVeHiStOgRaM():
+
+def ReMoVeHiStOgRaM(Output_File):
     odp = input("Czy chcesz usunąć plik histogram.png? (tak/nie)").lower()
     temp_flag = True
     while temp_flag:
         if odp == 'tak' or odp == 't':
             temp_flag = False
-            os.remove(OuTpUt_FiLe)
+            os.remove(Output_File)
             print("Usunięto plik histogram.png")
-        elif odp != "nie" or odp != "n":
-            odp = input("Błąd. Wpisz 'tak' lub 'nie': ").lower()
+        else:
+            temp_flag = False
+            print("Nie usunięto pliku histogram.png")
+
+
 def GenerateAndSave(text, chars, output_file):
     SaveHistogramToFile(GenerateHistogramFromText(text, chars), output_file)    
 
@@ -91,17 +102,23 @@ while FlAg:
             Flag2 = False
             TeXt = input("Wprowadź tekst do analizy:")
             GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
+            ShowHistogramFromFile(OuTpUt_FiLe)
+            ReMoVeHiStOgRaM(OuTpUt_FiLe)
 
         elif Option == "2":
             Flag2 = False
             url = input("Wprowadź adres url: ")
             TeXt = ReadTextFromUrl(url)
             GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
+            ShowHistogramFromFile(OuTpUt_FiLe)
+            ReMoVeHiStOgRaM(OuTpUt_FiLe)
 
         elif Option == "3":
             Flag2 = False
             TeXt = ReadTextFromFile(FiLe_PaTh)
             GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
+            ShowHistogramFromFile(OuTpUt_FiLe)
+            ReMoVeHiStOgRaM(OuTpUt_FiLe)
 
         else:
             Option = input("Błąd. Wybierz ponownie(1-3):")
