@@ -122,14 +122,3 @@ while FlAg:
 
         else:
             Option = input("Błąd. Wybierz ponownie(1-3):")
-
-
-
-
-
-
-
-
-
-
-
