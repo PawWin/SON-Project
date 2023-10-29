@@ -1,5 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
+import urllib.request
+import os
 def ReadTextFromFile(file_path):
     try:
         with open(file_path, 'r') as file:
@@ -39,9 +41,24 @@ def SaveHistogramToFile(letter_counts, output_file):
 
         print("Zapisano histogram do pliku histogram.png")
 
-def GenerateAndSave(text, chars, output_file):
-    SaveHistogramToFile(GenerateHistogramFromText(text, chars), output_file)
+ def ReadTextFromUrl(url):
+    try:
+        response = urllib.request.urlopen(url)
+        data = response.read()
+        text = data.decode("utf-8")
+        return text
+    except Exception as e:
+        print("Błąd podczas pobierania tekstu", e)
+        return ""
 
+def GenerateAndSave(text, chars, output_file):
+    SaveHistogramToFile(GenerateHistogramFromText(text, chars), output_file)    
+
+ScIeZkA = os.getcwd()
+FiLe_PaTh = ScIeZkA + '\\source_file.txt'
+OuTpUt_FiLe = ScIeZkA + '\\histogram.png'
+LiTeRy = ""
+    
 print("Wybierz miejsce wprowadzania danych:")
 print("1. Wprowadź z klawiatury.")
 print("2. Podaj adres URL.")
@@ -65,6 +82,13 @@ while Flag2:
 
     else:
         OpTiOn = input("Błąd. Wybierz ponownie(1-3):")
+
+
+
+
+
+
+
 
 
 
