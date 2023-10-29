@@ -57,7 +57,7 @@ ScIeZkA = os.getcwd()
 FiLe_PaTh = ScIeZkA + '\\source_file.txt'
 OuTpUt_FiLe = ScIeZkA + '\\histogram.png'
 LiTeRy = ""
-Flag2 = True
+
 FlAg = True
 while FlAg:
     FlAg = False
@@ -73,9 +73,10 @@ while FlAg:
     print("3. Wczytaj z pliku source.txt")
     Option = input("Wybierz (1-3):")
     TeXt = ""
+    Flag2 = True
     while Flag2:
         if Option == "1":
-            FlAg2 = False
+            Flag2 = False
             TeXt = input("Wprowadź tekst do analizy:")
             GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
 
@@ -86,7 +87,7 @@ while FlAg:
             GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
 
         elif Option == "3":
-            FlAg2 = False
+            Flag2 = False
             TeXt = ReadTextFromFile(FiLe_PaTh)
             GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
 
