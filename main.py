@@ -41,11 +41,7 @@ def SaveHistogramToFile(letter_counts, output_file):
 
         print("Zapisano histogram do pliku histogram.png")
 
-def GeNeRaTeAnDsAvE(text, chars, output_file):
-    SaVeHiStOgRaMtOfIlE(GeNeRaTeHiStOgRaMFrOmTeXt(text, chars), output_file)
-
-
-def ReadTextFromUrl(url):
+ def ReadTextFromUrl(url):
     try:
         response = urllib.request.urlopen(url)
         data = response.read()
@@ -55,9 +51,44 @@ def ReadTextFromUrl(url):
         print("Błąd podczas pobierania tekstu", e)
         return ""
 
-
+def GenerateAndSave(text, chars, output_file):
+    SaveHistogramToFile(GenerateHistogramFromText(text, chars), output_file)    
 
 ScIeZkA = os.getcwd()
 FiLe_PaTh = ScIeZkA + '\\source_file.txt'
 OuTpUt_FiLe = ScIeZkA + '\\histogram.png'
 LiTeRy = ""
+    
+print("Wybierz miejsce wprowadzania danych:")
+print("1. Wprowadź z klawiatury.")
+print("2. Podaj adres URL.")
+print("3. Wczytaj z pliku source.txt")
+Option = input("Wybierz (1-3):")
+TeXt = ""
+Flag2 = True
+while Flag2:
+    if Option == "1":
+        FlAg2 = False
+        TeXt = input("Wprowadź tekst do analizy:")
+
+    elif Option == "2":
+        Flag2 = False
+        url = input("Wprowadź adres url: ")
+        TeXt = ReadTextFromUrl(url)
+
+    elif Option == "3":
+        FlAg2 = False
+        TeXt = ReadTextFromFile(FiLe_PaTh)
+
+    else:
+        OpTiOn = input("Błąd. Wybierz ponownie(1-3):")
+
+
+
+
+
+
+
+
+
+
