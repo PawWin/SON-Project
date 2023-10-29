@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import urllib.request
 import os
 from PIL import Image
-def ReadTextFromFile(file_path):
+def ReAdTeXtFrOmFiLe(file_path):
     try:
         with open(file_path, 'r') as file:
             text = file.read()
@@ -14,7 +14,7 @@ def ReadTextFromFile(file_path):
     return text
 
 
-def GenerateHistogramFromText(text, chars):
+def GeNeRaTeHiStOgRaMfRoMtExT(text, chars):
     letter_counts = {}
     char_filter = set(chars)
 
@@ -25,7 +25,7 @@ def GenerateHistogramFromText(text, chars):
     return letter_counts
 
 
-def SaveHistogramToFile(letter_counts, output_file):
+def SaVeHiStOgRaMtOfIlE(letter_counts, output_file):
     if letter_counts is not None:
         letters = list(letter_counts.keys())
         counts = list(letter_counts.values())
@@ -42,7 +42,7 @@ def SaveHistogramToFile(letter_counts, output_file):
 
         print("Zapisano histogram do pliku histogram.png")
 
-def ReadTextFromUrl(url):
+def ReAdTeXtFrOmUrL(url):
     try:
         response = urllib.request.urlopen(url)
         data = response.read()
@@ -52,7 +52,7 @@ def ReadTextFromUrl(url):
         print("Błąd podczas pobierania tekstu", e)
         return ""
 
-def ShowHistogramFromFile(file_path):
+def ShOwHiStOgRaM(file_path):
     if os.path.isfile(file_path):
         FoTo = Image.open(file_path)
         FoTo.show()
@@ -73,8 +73,8 @@ def ReMoVeHiStOgRaM(Output_File):
             print("Nie usunięto pliku histogram.png")
 
 
-def GenerateAndSave(text, chars, output_file):
-    SaveHistogramToFile(GenerateHistogramFromText(text, chars), output_file)    
+def GeNeRaTeAnDsAvE(text, chars, output_file):
+    SaVeHiStOgRaMtOfIlE(GeNeRaTeHiStOgRaMfRoMtExT(text, chars), output_file)
 
 ScIeZkA = os.getcwd()
 FiLe_PaTh = ScIeZkA + '\\source_file.txt'
@@ -101,26 +101,25 @@ while FlAg:
         if Option == "1":
             Flag2 = False
             TeXt = input("Wprowadź tekst do analizy:")
-            GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
-            ShowHistogramFromFile(OuTpUt_FiLe)
+            GeNeRaTeAnDsAvE(TeXt, LiTeRy, OuTpUt_FiLe)
+            ShOwHiStOgRaM(OuTpUt_FiLe)
             ReMoVeHiStOgRaM(OuTpUt_FiLe)
         elif Option == "2":
             Flag2 = False
-            url = input("Wprowadź adres url: ")
-            TeXt = ReadTextFromUrl(url)
-            GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
-            ShowHistogramFromFile(OuTpUt_FiLe)
+            UrL = input("Wprowadź adres url: ")
+            TeXt = ReAdTeXtFrOmUrL(UrL)
+            GeNeRaTeAnDsAvE(TeXt, LiTeRy, OuTpUt_FiLe)
+            ShOwHiStOgRaM(OuTpUt_FiLe)
             ReMoVeHiStOgRaM(OuTpUt_FiLe)
         elif Option == "3":
             Flag2 = False
-            TeXt = ReadTextFromFile(FiLe_PaTh)
-            GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
-            ShowHistogramFromFile(OuTpUt_FiLe)
+            TeXt = ReAdTeXtFrOmFiLe(FiLe_PaTh)
+            GeNeRaTeAnDsAvE(TeXt, LiTeRy, OuTpUt_FiLe)
+            ShOwHiStOgRaM(OuTpUt_FiLe)
             ReMoVeHiStOgRaM(OuTpUt_FiLe)
         else:
             Option = input("Błąd. Wybierz ponownie(1-3):")
-        else:
-            OpTiOn = input("Błąd. Wybierz ponownie(1-3):")
+
 
 
 
