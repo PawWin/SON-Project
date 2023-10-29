@@ -38,3 +38,6 @@ def SaveHistogramToFile(letter_counts, output_file):
         plt.show()
 
         print("Zapisano histogram do pliku histogram.png")
+
+def GeNeRaTeAnDsAvE(text, chars, output_file):
+    SaVeHiStOgRaMtOfIlE(GeNeRaTeHiStOgRaMFrOmTeXt(text, chars), output_file)
