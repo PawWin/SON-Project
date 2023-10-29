@@ -80,7 +80,7 @@ ScIeZkA = os.getcwd()
 FiLe_PaTh = ScIeZkA + '\\source_file.txt'
 OuTpUt_FiLe = ScIeZkA + '\\histogram.png'
 LiTeRy = ""
-    
+
 FlAg = True
 while FlAg:
     FlAg = False
@@ -104,7 +104,6 @@ while FlAg:
             GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
             ShowHistogramFromFile(OuTpUt_FiLe)
             ReMoVeHiStOgRaM(OuTpUt_FiLe)
-
         elif Option == "2":
             Flag2 = False
             url = input("Wprowadź adres url: ")
@@ -112,13 +111,22 @@ while FlAg:
             GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
             ShowHistogramFromFile(OuTpUt_FiLe)
             ReMoVeHiStOgRaM(OuTpUt_FiLe)
-
         elif Option == "3":
             Flag2 = False
             TeXt = ReadTextFromFile(FiLe_PaTh)
             GenerateAndSave(TeXt, LiTeRy, OuTpUt_FiLe)
             ShowHistogramFromFile(OuTpUt_FiLe)
             ReMoVeHiStOgRaM(OuTpUt_FiLe)
-
         else:
             Option = input("Błąd. Wybierz ponownie(1-3):")
+        else:
+            OpTiOn = input("Błąd. Wybierz ponownie(1-3):")
+
+
+
+
+
+
+
+
+
